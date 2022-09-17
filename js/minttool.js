@@ -82,14 +82,21 @@ async function mintRegular() {
 async function mintAbasho() {
     if (window.ethereum) {
         if(await contract.riftOpenAbasho()) {
-            try {
-                const mint = await contract.abashoRecoverAstronaut(parseInt(document.getElementById("abashoID").value), {value: ethers.utils.parseEther(abashoPrice.toString())});
-                updateMintCount();
-            } catch(err) {
-                document.getElementById("alerts").classList.remove("visually-hidden");
-                document.getElementById("alerts").innerHTML = "Something went wrong";
-                console.log(err);
+            if(await contract.abashoClaimed(parseInt(document.getElementById("abashoID").value))) {
+                try {
+                    const mint = await contract.abashoRecoverAstronaut(parseInt(document.getElementById("abashoID").value), {value: ethers.utils.parseEther(abashoPrice.toString())});
+                    updateMintCount();
+                } catch(err) {
+                    document.getElementById("alerts").classList.remove("visually-hidden");
+                    document.getElementById("alerts").innerHTML = "Something went wrong";
+                    console.log(err);
+                }
             }
+            else{
+                document.getElementById("alerts").classList.remove("visually-hidden");
+                document.getElementById("alerts").innerHTML = "Abasho Mint for #"+parseInt(document.getElementById("abashoID").value)+" has already been claimed";
+            }
+            
         }
         else {
             document.getElementById("alerts").classList.remove("visually-hidden");
