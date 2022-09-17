@@ -10,18 +10,18 @@
     <script src="js/minttool.js" type="module"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
   </head>
-  <body>
+  <body style="padding: 40px;">
     <div class="d-grid gap-2 col-6 mx-auto">
         <h1 id="mintAmount" class="text-center visually-hidden">0/250 Minted</h1>
         <p class="text-center visually-hidden" id="alerts">No mint</p>
         <button type="button" id="ConnectWalletBtn" class="btn btn-dark" onclick="connectAccounts()">CONNECT WALLET</button>
         <button type="button" id="regularMintBtn" class="btn btn-dark disabled" onclick="mintRegular()">MINT</button>
             <div class="input-group">
-                <input type="text" class="form-control myinput text-start" id="abashoID" placeholder="ABASHO #">
-                <button type="button" class="btn btn-dark disabled" id="abashoMintBtn" onclick="mintAbasho()">ABASHO MINT</button>
+                <input type="text" class="form-control myinput text-start" id="abashoID" placeholder="INPUT ABASHO #">
+                <button type="button" class="btn btn-dark disabled" id="abashoMintBtn" onclick="mintAbasho()" style="max-width: 40%;">ABASHO MINT</button>
             </div>
           <p class="text-center" style="margin: 0;">Regular Mint price: 0.04 ETH / Abasho Mint price: 0.01 ETH</p>
-          <p class="text-center" style="margin: 0;">Or mint directly through the <a href="https://etherscan.io/address/0x1deb1cf3ec6a1f10808b59a0679c079d0dc4a5ac#writeContract">Smart Contract</a></p>
+          <p class="text-center" style="margin: 0;">Or mint directly through the <a href="https://etherscan.io/address/0x1deb1cf3ec6a1f10808b59a0679c079d0dc4a5ac#writeContract" target="_blank">Smart Contract</a></p>
       </div>
   </body>
 </html>
