@@ -81,8 +81,9 @@ async function mintRegular() {
 
 async function mintAbasho() {
     if (window.ethereum) {
+        console.log(await contract.abashoClaimed(118));
         if(await contract.riftOpenAbasho()) {
-            if(!(await contract.abashoClaimed(parseInt(document.getElementById("abashoID").value)))) {
+            if(await !contract.abashoClaimed(parseInt(document.getElementById("abashoID").value))) {
                 try {
                     const mint = await contract.abashoRecoverAstronaut(parseInt(document.getElementById("abashoID").value), {value: ethers.utils.parseEther(abashoPrice.toString())});
                     updateMintCount();
