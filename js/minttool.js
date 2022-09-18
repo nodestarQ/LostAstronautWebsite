@@ -92,7 +92,7 @@ async function mintAbasho() {
                 } catch(err) {
                     document.getElementById("alerts").classList.remove("visually-hidden");
                     document.getElementById("alerts").innerHTML = "Something went wrong";
-                    console.log(err);
+                    console.log(err.error.message);
                 }
                 }
             
