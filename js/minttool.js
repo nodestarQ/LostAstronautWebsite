@@ -81,7 +81,11 @@ async function mintRegular() {
 async function mintAbasho() {
     if (window.ethereum) {
         if(await contract.riftOpenAbasho()) {
-            if((await contract.abashoClaimed(parseInt(document.getElementById("abashoID").value)))==false) {
+            if((await contract.abashoClaimed(parseInt(document.getElementById("abashoID").value)))==true) {
+                document.getElementById("alerts").classList.remove("visually-hidden");
+                document.getElementById("alerts").innerHTML = "Abasho Mint for #"+parseInt(document.getElementById("abashoID").value)+" has already been claimed";
+            }
+            else{
                 try {
                     const mint = await contract.abashoRecoverAstronaut(parseInt(document.getElementById("abashoID").value), {value: ethers.utils.parseEther(abashoPrice.toString())});
                     updateMintCount();
@@ -90,11 +94,7 @@ async function mintAbasho() {
                     document.getElementById("alerts").innerHTML = "Something went wrong";
                     console.log(err);
                 }
-            }
-            else{
-                document.getElementById("alerts").classList.remove("visually-hidden");
-                document.getElementById("alerts").innerHTML = "Abasho Mint for #"+parseInt(document.getElementById("abashoID").value)+" has already been claimed";
-            }
+                }
             
         }
         else {
