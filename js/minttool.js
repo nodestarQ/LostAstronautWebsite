@@ -67,8 +67,7 @@ async function mintRegular() {
                 updateMintCount();
             } catch(err) {
                 document.getElementById("alerts").classList.remove("visually-hidden");
-                document.getElementById("alerts").innerHTML = "Something went wrong";
-                console.log(err);
+                document.getElementById("alerts").innerHTML = "Something went wrong: "+ err.error.message;
             }
         }
         else {
@@ -91,8 +90,7 @@ async function mintAbasho() {
                     updateMintCount();
                 } catch(err) {
                     document.getElementById("alerts").classList.remove("visually-hidden");
-                    document.getElementById("alerts").innerHTML = "Something went wrong";
-                    console.log(err.error.message);
+                    document.getElementById("alerts").innerHTML = "Something went wrong: "+ err.error.message;
                 }
                 }
             
