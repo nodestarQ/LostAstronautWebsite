@@ -10,7 +10,6 @@ async function connectAccounts() {
     if(window.ethereum) {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         account = await provider.send("eth_requestAccounts",[]);
-        console.log(account);
         signer = provider.getSigner();
         contract = new ethers.Contract(
             scAddress,
@@ -81,9 +80,8 @@ async function mintRegular() {
 
 async function mintAbasho() {
     if (window.ethereum) {
-        console.log(await contract.abashoClaimed(118));
         if(await contract.riftOpenAbasho()) {
-            if(await !contract.abashoClaimed(parseInt(document.getElementById("abashoID").value))) {
+            if((await contract.abashoClaimed(parseInt(document.getElementById("abashoID").value)))==false) {
                 try {
                     const mint = await contract.abashoRecoverAstronaut(parseInt(document.getElementById("abashoID").value), {value: ethers.utils.parseEther(abashoPrice.toString())});
                     updateMintCount();
